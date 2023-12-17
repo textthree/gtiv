@@ -1,0 +1,22 @@
+{
+  "name": "nodejs_webrtc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "nodejs_webrtc.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy1": "scp -r /Users/t3/workspace/Javascript/nodejs_webrtc/web im:/data100g/webrtc_demo",
+    "deploy2": "scp /Users/t3/workspace/Javascript/nodejs_webrtc/main.js im:/data100g/webrtc_demo",
+    "deploy3": "scp /Users/t3/workspace/Javascript/nodejs_webrtc/package.json im:/data100g/webrtc_demo",
+    "dp": "yarn deploy1 && yarn deploy2 && yarn deploy3"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "http": "^0.0.1-security",
+    "serve-index": "^1.9.1",
+    "socket.io": "^4.5.4"
+  }
+}

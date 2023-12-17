@@ -1,0 +1,21 @@
+debug: true # debug 为 true 会在控制台打印出每条 sql 语句
+conn_max_idle: 10 # 通用配置，连接池最大空闲连接数
+conn_max_open: 100 # 通用配置，连接池最大连接数
+conn_max_lifetime: 1h # 通用配置，连接数最大生命周期
+protocol: tcp # 通用配置，传输协议
+loc: Local # 通用配置，时区
+charset: utf8mb4 # 字符集
+collation: utf8mb4_unicode_ci # 字符序
+timeout: 10s # 连接超时
+read_timeout: 2s # 读超时
+write_timeout: 2s # 写超时
+parse_time: true # 是否解析时间
+default_conn: master # 默认连接
+
+master:
+  driver: mysql
+  host: 127.0.0.1
+  port: 3306
+  database: your_db
+  username: your_username
+  password: "your_password"

@@ -1,0 +1,7 @@
+etcd:
+  discovery_interval_seconds: 5
+  # etcd 服务器配置
+  server:
+    endpoints:
+    - http://localhost:2379
+    dial_timeout_secods: 5

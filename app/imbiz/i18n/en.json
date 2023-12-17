@@ -1,0 +1,22 @@
+{
+  "bannedAll": "all prohibitions",
+  "user": "user ",
+  "bannedTimeType1": " was banned for 10 minutes",
+  "bannedTimeType2": " was banned for 1 hour",
+  "bannedTimeType3": " was banned for 12 hours",
+  "bannedTimeType4": " was banned for 1 day",
+  "bannedTimeType5": " was permanently barred",
+  "relieveBannedAll": "all prohibitions have been lifted",
+  "relieveBannedUser": " has been released from his ban",
+  "createRooomCount1": "Creation failed, you can only create ",
+  "createRooomCount2": " groups",
+  "whoseRoom": "New group chat ",
+  "userRoomMemberLimit": "The number of group members cannot exceed 500",
+  "canNotRemoveMember": "Insufficient permissions",
+  "deleteVideoSelf": "Failed to delete. You can only delete your uploaded video",
+  "dissolveRoom": "This group has been dissolved",
+  "acceptContacts": "I passed your friend verification request and can start chatting now.",
+  "createNewRoom": "I created a new group. Now we can start chatting!"
+}
+
+

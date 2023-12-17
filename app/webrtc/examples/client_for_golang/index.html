@@ -1,0 +1,46 @@
+<html>
+<head>
+    <title>WebRTC PeerConnection </title>
+    <link href="index.css" rel="stylesheet"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0">
+</head>
+<body>
+
+<div>
+    <div class="button-box">
+        <button id="connserver">ConnServer</button>
+        <button id="leave" disabled>Leave</button>
+    </div>
+    <!-- playsinline 选项是去除视频的控制条 -->
+    <div id="preview">
+        <div>
+            <h2>Local:</h2>
+            <video id="localvideo" autoplay playsinline muted></video>
+            <h2>Offer SDP:</h2>
+            <textarea id="offer" disabled></textarea>
+        </div>
+        <div>
+            <h2>Remote:</h2>
+            <video id="remotevideo" autoplay playsinline></video>
+            <h2>Answer SDP:</h2>
+            <textarea disabled id="answer"></textarea>
+        </div>
+    </div>
+</div>
+
+
+<!--
+    socket.io.js ： 用于连接信令服务器
+    adapter-latest.js ： 用于浏览器适配Chrome , Firefox …
+    main.js ： WebRTC 客户端代码
+    https://cdn.socket.io/socket.io-1.2.0.js  golang 版本的不支持高版本 socket.io 客户端
+    https://webrtc.github.io/adapter/adapter-latest.js
+    浏览器调试时记得控制台 Disable cache，不然改了 index.js 有缓存不生效
+ -->
+<script src="./socket.io-1.2.0.js"></script>
+<script src="./adapter-latest.js"></script>
+<script src="fn.js"></script>
+<script src="index.js"></script>
+</body>
+</html>

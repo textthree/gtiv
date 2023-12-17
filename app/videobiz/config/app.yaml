@@ -1,0 +1,17 @@
+debug: false
+
+# 是否已守护进程方式运行，在 pm2、docker 等环境下是不需要以守护进程方式运行的，而是直接前台运行
+daemon: false
+
+http:
+  port: 2009
+
+runtime:
+  path: ./videobiz_runtime
+
+swagger:
+  filepath: docs/swagger.json
+  host: localhost
+  port: 20090
+
+

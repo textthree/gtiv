@@ -1,0 +1,16 @@
+[signal]
+    listenAddress = ":2014"
+
+[redis]
+    addr = "127.0.0.1:6379"
+    password = "" # 没有密码就值留空或删除这个配置项
+    db = 4                # 不配置则默认 0
+
+[turn]
+    listenIp = "192.168.1.200"  # 服务绑定本机的 ip，在云服务器上需要是内网地址
+    publicIp = "192.168.1.200"  # 将本机公网 ip 地址返回给客户端
+    port = 2007
+    realm = "gtiv"
+    user = "gtivuser"
+    pwd = "gtivpass"
+

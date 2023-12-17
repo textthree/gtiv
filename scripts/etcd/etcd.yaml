@@ -1,0 +1,9 @@
+# 启动命令：./etcd
+# 官方默认的 etcd 端口是 2379 用于客户端请求，2380 用于对等通信。
+# https://github.com/etcd-io/etcd/releases
+
+# 指定配置启动：./etcd --config-file=etcd.conf
+listen-client-urls: http://127.0.0.1:2379
+advertise-client-urls: http://127.0.0.1:2379
+listen-peer-urls: http://127.0.0.1:2380
+initial-advertise-peer-urls: http://127.0.0.1:2380

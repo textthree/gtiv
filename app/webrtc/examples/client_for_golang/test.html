@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+<head>
+  <title>Socket.IO</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font: 13px Helvetica, Arial; }
+    form { background: #000; padding: 3px; position: fixed; top: 0; width: 100%; }
+    form input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
+    form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
+    .conn-state{margin: 60px 10px 10px; font-weight: bold}
+    .closeConn{background: rgb(130, 224, 255); border-radius: 2px; padding: 2px 5px;
+      font-weight: normal; font-size: 12px; margin-left: 10px; cursor: pointer; display: none}
+    #messages {list-style-type: none; margin: 0px; padding: 0; }
+    #messages li { padding: 5px 10px; }
+    #messages li:nth-child(odd) { background: #eee; }
+    #messages p {margin: 10px}
+
+  </style>
+</head>
+<body>
+<!--https://github.com/googollee/go-socket.io/blob/master/_examples/asset/index.html-->
+<form action="">
+  <input id="msg" value="哈喽沃尔德" autocomplete="off" /><button>发送</button>
+</form>
+<div class="conn-state">
+  连接状态: <span id="connState"></span>
+  <span class="closeConn">断开</span>
+</div>
+<ul id="messages"></ul>
+
+<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+<script>
+  // 浏览器需要访问 http://localhost:8008 也就是说访问的与监听的需要保持一致，与 127.0.0.1 不等价
+  // io() 方法如果不传参数，默认就是浏览器网址，http 协议换成 ws 协议是等价的
+  var socket = io("http://192.168.1.200:8008/one2one");
+  // var socket = io("http://192.168.1.200:8008/one2one");
+  var roomId = "room100"
+
+  // 连接状态
+  socket.on('connect', function(){
+    $('#connState').html($('<span style="color:green">').text("connected"));
+    $('.closeConn').show()
+    socket.emit('join', roomId)
+  });
+  socket.on('error', function(){
+    $('#connState').html($('<span style="color:#e50505">').text("error"));
+  });
+  socket.on('disconnect', function(){
+    $('#connState').html($('<span style="color:#c0960c">').text("disconnect"));
+  });
+
+  // 自定义事件，手动断开连接
+  socket.on('bye');
+
+  socket.on('joined', function (socketId){
+    $('#messages').append($('<li>').text(`加入房间成，socketId：${socketId}`));
+  })
+
+  socket.on('message', function (socketId, msg){
+    $('#messages').append($('<li>').text(`[${socketId}]: ` + msg));
+  })
+
+  // 发送消息
+  $('form').submit(function(){
+    socket.emit('message', roomId, $('#msg').val());
+    $('#msg').val('');
+    return false;
+  });
+
+  // 断开连接
+  $('.closeConn').click(function(){
+    socket.emit('bye', "我要关闭");
+  });
+
+
+</script>
+</body>
+</html>

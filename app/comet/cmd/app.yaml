@@ -1,0 +1,11 @@
+etcd:
+  discovery_interval_seconds: 5 # 生产环境可设置长一点，例如 30 秒
+  # etcd 服务器地址
+  server:
+    endpoints:
+    - http://localhost:2379
+    dial_timeout_secods: 5
+
+  client:
+    service_name: im-comet
+    service_addr: "192.168.1.200:2003"

@@ -1,0 +1,21 @@
+# 七牛对象存储
+## 这里用到了三个不同的桶，为了更好的分配资源，可以为不同的桶设置不同的桶策略。
+## video 前缀的桶：用于存储视频
+## im 前缀的桶：存储一些其他持久化资源
+## chat 前缀的桶：用于存储聊天资源(图片语音视频等)，可以设置桶过期策略为 7 天。
+qiniuObs:
+  accessKey: "your_ak"
+  secretKey: "your_sk"
+  chatBucketName: "your_bucket_name"
+  chatBucketUrl: "endpoint"
+  imBucketName: "your_bucket_name"
+  imBucketUrl: "endpoint"
+  videoBucketName: "your_bucket_name"
+  videoBucketUrl: "endpoint"
+
+tokenKey: "your_token_key" # user token 加密私钥
+
+live_server:
+  rtmp: http://192.168.1.200:2011/live/
+  hls: http://192.168.1.200:2012/live/ # http://192.168.1.200:2012/live/room1.m3u8
+  flv: http://192.168.1.200:2013/live/

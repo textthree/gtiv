@@ -1,0 +1,45 @@
+<html>
+<head>
+    <title>WebRTC PeerConnection </title>
+    <link href="index.css" rel="stylesheet"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0">
+</head>
+<body>
+
+<div>
+    <div class="button-box">
+        <button id="connserver">ConnServer</button>
+        <button id="leave" disabled>Leave</button>
+    </div>
+    <!-- playsinline 选项是去除视频的控制条 -->
+    <div id="preview">
+        <div>
+            <h2>Local:</h2>
+            <video id="localvideo" autoplay playsinline muted></video>
+            <h2>Offer SDP:</h2>
+            <textarea id="offer" disabled></textarea>
+        </div>
+        <div>
+            <h2>Remote:</h2>
+            <video id="remotevideo" autoplay playsinline></video>
+            <h2>Answer SDP:</h2>
+            <textarea disabled id="answer"></textarea>
+        </div>
+    </div>
+</div>
+
+
+<!--
+    socket.io.js ： 用于连接信令服务器
+    adapter -latest.js ： 用于浏览器适配Chrome , Firefox …
+    main.js ： WebRTC 客户端代码
+ -->
+<!--<script src="js/socket.io.js"></script>-->
+<!--<script src="js/adapter-latest.js"></script>-->
+<script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+<script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+<script src="fn.js"></script>
+<script src="index.js"></script>
+</body>
+</html>

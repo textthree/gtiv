@@ -1,0 +1,86 @@
+syntax = "proto3";
+
+// protoc --go_out=./ --go_opt=paths=source_relative --go-grpc_out=./ --go-grpc_opt=paths=source_relative *.proto
+
+// 如果改动这个文件，则 goframe 和 newframe 两个项目中的 logic.proto 都要改，暂时这两个项目未整合只能先重复修生成
+
+option go_package = "./;rpcapi";
+
+message Proto {
+  int32 ver = 1;
+  int32 op = 2;
+  int32 seq = 3;
+  bytes body = 4;
+}
+
+
+message PushMsg {
+    enum Type {
+        PUSH = 0;
+        ROOM = 1;
+        BROADCAST = 2;
+    }
+    Type type = 1;
+    int32 operation = 2;
+    int32 speed = 3;
+    string server = 4;
+    string room = 5;
+    repeated string keys = 6;
+    bytes msg = 7;
+}
+
+message ConnectReq {
+    string server = 1;
+    string cookie = 2;
+    bytes token = 3;
+}
+
+message ConnectReply {
+    int64 mid = 1;
+    string key = 2;
+    string roomID = 3;
+    repeated int32 accepts = 4;
+    int64 heartbeat = 5;
+}
+
+message DisconnectReq {
+    int64 mid = 1;
+    string key = 2;
+    string server = 3;
+}
+
+message DisconnectReply {
+    bool has = 1;
+}
+
+message HeartbeatReq {
+    int64 mid = 1;
+    string key = 2;
+    string server = 3;
+}
+
+message HeartbeatReply {
+}
+
+message OnlineReq {
+    string server = 1;
+    map<string, int32> roomCount = 2;
+}
+
+message OnlineReply {
+    map<string, int32> allRoomCount = 1;
+}
+
+
+
+service Logic {
+    // Connect
+    rpc Connect(ConnectReq) returns (ConnectReply);
+    // Disconnect
+    rpc Disconnect(DisconnectReq) returns (DisconnectReply);
+    // Heartbeat
+    rpc Heartbeat(HeartbeatReq) returns (HeartbeatReply);
+    // RenewOnline
+    rpc RenewOnline(OnlineReq) returns (OnlineReply);
+
+}

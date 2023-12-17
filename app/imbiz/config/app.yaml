@@ -1,0 +1,38 @@
+debug: false
+
+# 是否已守护进程方式运行，在 pm2、docker 等环境下是不需要以守护进程方式运行的，而是直接前台运行
+daemon: false
+
+http:
+  port: 2015
+
+runtime:
+  path: ./runtime
+
+swagger:
+  filepath: docs/swagger.json
+  host: localhost
+  port: 20150
+
+etcd:
+  server:
+    endpoints:
+      - http://localhost:2379
+    dial_timeout_secods: 5
+  client:
+    service_name: im-biz-rpc
+    service_addr: "192.168.1.200:2002"
+
+rpcServer:
+  network: "tcp"
+  addr: ":2002"
+  timeout: 1 # 单位秒
+
+rpcClient:
+  dial: 1 # 单位秒
+  timeout: 1 # 单位秒
+
+kafka:
+  topic: "goim-push-topic-9092"
+  brokers:
+    - "127.0.0.1:9092"

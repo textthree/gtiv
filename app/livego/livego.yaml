@@ -1,0 +1,35 @@
+# Logger level
+level: info
+
+# FLV Options
+flv_archive: false
+flv_dir: "./tmp"
+httpflv_addr: ":2013"
+
+# RTMP Options
+#rtmp_noauth: false
+rtmp_addr: ":2011"
+#enable_rtmps: true
+#rtmps_cert: server.crt
+#rtmps_key: server.key
+read_timeout: 10
+write_timeout: 10
+
+ # HLS Options
+hls_addr: ":2012"
+#use_hls_https: true  # 为 true 则无法通过 http 拉流
+
+ # API Options
+api_addr: ":2010"
+server:
+- appname: live
+  live: true
+  hls: true
+  api: true
+  flv: true
+# 多 app
+#- appname: ttt1
+#  live: true
+#  hls: true
+#  dto: true
+#  flv: true

@@ -1,0 +1,86 @@
+<html>
+
+<header>
+  <title>ice测试</title>
+</header>
+
+<body>
+
+<label for="serverAddress"></label>
+<input id="serverAddress" value="turn:192.168.1.200:5800"/>
+<br/>
+
+<label for="username"></label><input id="username" value="t3imturn"/>
+<br/>
+
+<label for="password"></label><input id="password" value="foobar"/>
+<br/>
+
+<button onclick="window.test()">Test</button>
+
+<script>
+  function checkTURNServer(turnConfig, timeout) {
+
+    return new Promise(function (resolve, reject) {
+
+      let promiseResolved;
+      setTimeout(function () {
+        if (promiseResolved) return;
+        resolve(false);
+        promiseResolved = true;
+      }, timeout || 5000);
+
+      promiseResolved = false;
+
+      let myPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection   //compatibility for firefox and chrome
+              , pc = new myPeerConnection({iceServers: [turnConfig]})
+              , noop = function () {
+      };
+
+      pc.createDataChannel("");    //create a bogus data channel
+      pc.createOffer({}).then((offer) => {
+        if (offer.sdp.indexOf('typ relay') > -1) { // sometimes sdp contains the ice candidates...
+          promiseResolved = true;
+          resolve(true);
+        }
+        pc.setLocalDescription(offer)
+      })
+
+      pc.onicecandidate = function (ice) {  //listen for candidate events
+        if (promiseResolved || !ice || !ice.candidate
+                || !ice.candidate.candidate
+                || !(ice.candidate.candidate.indexOf('typ relay') > -1)) return;
+
+        console.log("ice candidate=", ice.candidate)
+
+        // If a relay candidate was found, notify that the TURN server works!
+        if (ice.candidate.type === "relay") {
+          console.log("The TURN server is reachable !");
+        }
+
+        promiseResolved = true;
+        resolve(true);
+      };
+    });
+  }
+
+  window.test = () => {
+    let serverAddress = document.getElementById("serverAddress").value;
+    let username = document.getElementById("username").value;
+    let password = document.getElementById("password").value;
+
+    console.log("Trigger ice test. Server address=", serverAddress,
+            ", username=", username, ", password=", password)
+
+    checkTURNServer({
+      urls: serverAddress,
+      username: username,
+      credential: password
+    }).then(function (bool) {
+      console.log('is TURN server active? ', bool ? 'yes' : 'no');
+    }).catch(console.error.bind(console));
+  }
+
+</script>
+</body>
+</html>

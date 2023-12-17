@@ -1,0 +1,20 @@
+[kafka]
+    topic = "goim-push-topic-9092"
+    group = "goim-push-group-job-9092"
+    brokers = ["192.168.1.200:9092"]
+
+[comet]
+    serviceName = "im-comet"
+
+[redis]
+    network = "tcp"
+    addr = "127.0.0.1:6379"
+    auth = "123456"
+    active = 60000
+    idle = 1024
+    dialTimeout = "200ms"
+    readTimeout = "500ms"
+    writeTimeout = "500ms"
+    idleTimeout = "120s"
+    expire = "30m"
+    selectDb = 1

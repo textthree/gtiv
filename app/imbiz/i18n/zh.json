@@ -1,0 +1,20 @@
+{
+  "bannedAll": "全体禁言",
+  "user": "用户",
+  "bannedTimeType1": " 被禁言 10 分钟",
+  "bannedTimeType2": " 被禁言 1 小时",
+  "bannedTimeType3": " 被禁言 12 小时",
+  "bannedTimeType4": " 被禁言 1 天",
+  "bannedTimeType5": " 被永久禁言",
+  "relieveBannedAll": "全体禁言已解除",
+  "relieveBannedUser": " 已解除禁言",
+  "createRooomCount1": "创建失败，您最多只能创建",
+  "createRooomCount2": "个聊天室",
+  "whoseRoom": "新群聊 ",
+  "userRoomMemberLimit": "操作失败，群人数不能超过 500 人",
+  "canNotRemoveMember": "权限不足，无法移除",
+  "deleteVideoSelf": "删除失败，你只能删除自己上传的视频",
+  "dissolveRoom": "本群已解散",
+  "acceptContacts": "我通过了你的朋友验证请求，现在可以开始聊天了。",
+  "createNewRoom": "我创建了一个新群，我们现在可以开始聊天啦！"
+}
